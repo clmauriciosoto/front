@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Formulario Eventos</h5>
+    <!--     <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+    <form [formGroup]="form">
+      <div class="form-floating mb-3">
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Ingrese Titulo del evento..."
+          formControlName="title"
+        />
+        <label for="title">Titulo</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="date"
+          class="form-control"
+          id="date"
+          placeholder="Ingrese Fecha de el Evento"
+          formControlName="date"
+        />
+        <label for="date">Fecha del evento</label>
+      </div>
+    </form>
+
+    <div class="d-flex justify-content-end">
+      <div class="p-2 bd-highlight">
+        <button class="btn btn-secondary" (click)="cancel()">Cancelar</button>
+      </div>
+      <div class="p-2 bd-highlight">
+        <button
+          *ngIf="!id; else elseButton"
+          class="btn btn-primary"
+          (click)="save()"
+          [disabled]="form.invalid"
+        >
+          Guardar
+        </button>
+
+        <ng-template #elseButton>
+          <button
+            class="btn btn-warning"
+            (click)="edit()"
+            [disabled]="form.invalid"
+          >
+            Editar
+          </button>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
